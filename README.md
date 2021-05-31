@@ -1,7 +1,6 @@
 # PROJETO FINAL ANDROID
 ## Equipe:
 > Rayrisson Vinicus Alves de Lima - 472050
-<br>
 > Mariana Oliveira Fernandes - 475454
 
 # Tema: Laborátorio Fitness
