@@ -3,11 +3,13 @@
 > Rayrisson Vinicus Alves de Lima - 472050
 
 > Mariana Oliveira Fernandes - 475454
-
+## Sumário
+1. [Descrição](#descrição)
+2. [Funcionalidades](#funcionalidades)
 # Tema: Laborátorio Fitness
 
 ## Descrição
-O aplicativo tem como objetivo centralizar todas as informações relacionadas a saúde, exercício e alimentação em um só lugar. Por meio desse aplicativo o usuário terá a possibilidade de armazenar não somente dados estatitisticos da sua saúde(peso, massa corporal, etc) como também sua  ficha de treino ou dieta, que poderá ser disponibilizada por um profissional da área no app ou preenchida pelo próprio usuário.
+O aplicativo tem como objetivo centralizar todas as informações relacionadas a saúde, exercício e alimentação em um só lugar. Por meio desse aplicativo o usuário terá a possibilidade de armazenar não somente dados estatísticos da sua saúde (peso, massa corporal e etc) como também sua  ficha de treino ou dieta, que poderá ser disponibilizada por um profissional da área no app ou preenchida pelo próprio usuário.
 Além disso, os usuários poderão interagir entre sí, compartilhando receitas e treinos - *experimental*.
 ## Funcionalidades
 **Para todos:** 
@@ -28,7 +30,7 @@ Além disso, os usuários poderão interagir entre sí, compartilhando receitas 
 - [ ] Acesso a lista de alunos
 - [ ] Ver perfil e acompanhar resultados dos alunos
 
-**Somente para nutrionistas**
+**Somente para nutricionistas**
 - [ ] Compartilhar dieta com aluno
 
 **Somente para personal trainers**
