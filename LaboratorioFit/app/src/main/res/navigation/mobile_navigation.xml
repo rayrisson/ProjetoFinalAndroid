@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_user">
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.example.laboratoriofit.ui.user.UserFragment"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/navigation_ficha"
+        android:name="com.example.laboratoriofit.ui.ficha.FichaFragment"
+        android:label="@string/title_ficha"
+        tools:layout="@layout/fragment_ficha" />
+
+    <fragment
+        android:id="@+id/navigation_dieta"
+        android:name="com.example.laboratoriofit.ui.dieta.DietaFragment"
+        android:label="@string/title_dieta"
+        tools:layout="@layout/fragment_dieta" >
+        <action
+            android:id="@+id/action_navigation_dieta_to_addRefeicaoFragment"
+            app:destination="@id/addRefeicaoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRefeicaoFragment"
+        android:name="com.example.laboratoriofit.ui.dieta.AddRefeicaoFragment"
+        android:label="title"
+        tools:layout="@layout/fragment_add_refeicao" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="idDieta"
+            app:argType="string" />
+    </fragment>
+</navigation>

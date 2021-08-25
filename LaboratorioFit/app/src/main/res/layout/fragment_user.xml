@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.UserFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Laboratório Fit"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/userImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/user_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        />
+
+    <TextView
+        android:id="@+id/WelcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/actor"
+        android:text="Olá, usuário"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/userImage"
+        app:layout_constraintTop_toTopOf="@+id/userImage" />
+
+    <TextView
+        android:id="@+id/alturaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="Altura: "
+        app:layout_constraintStart_toStartOf="@+id/WelcomeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/WelcomeTitle" />
+
+    <TextView
+        android:id="@+id/alturaValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="0 cm"
+        app:layout_constraintStart_toEndOf="@+id/alturaTitle"
+        app:layout_constraintTop_toTopOf="@+id/alturaTitle" />
+
+    <TextView
+        android:id="@+id/pesoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="Peso:"
+        app:layout_constraintStart_toStartOf="@+id/alturaTitle"
+        app:layout_constraintTop_toBottomOf="@+id/alturaTitle" />
+
+    <TextView
+        android:id="@+id/pesoValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="0 kg"
+        app:layout_constraintStart_toStartOf="@+id/alturaValue"
+        app:layout_constraintTop_toTopOf="@+id/pesoTitle" />
+    <TextView
+        android:id="@+id/imcTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="IMC:"
+        app:layout_constraintStart_toStartOf="@+id/pesoTitle"
+        app:layout_constraintTop_toBottomOf="@+id/pesoTitle" />
+
+    <TextView
+        android:id="@+id/imcValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/actor"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="@+id/pesoValue"
+        app:layout_constraintTop_toTopOf="@+id/imcTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

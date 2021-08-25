@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "461114734987",
+    "project_id": "fitneab-131d6",
+    "storage_bucket": "fitneab-131d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461114734987:android:c686e1cbb2a201e209d78e",
+        "android_client_info": {
+          "package_name": "com.example.laboratoriofit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461114734987-qu9lf7h51oeicuc17f4pqljehjbho6da.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjlqa5GwUePv36kWOVq2B-JpR3tAYc6Ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461114734987-qu9lf7h51oeicuc17f4pqljehjbho6da.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
