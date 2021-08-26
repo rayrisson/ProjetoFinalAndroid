@@ -1,16 +1,10 @@
 package com.example.laboratoriofit.ui.user
 
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.laboratoriofit.data.dieta.Refeicao
 import com.example.laboratoriofit.databinding.FragmentUserBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -33,20 +27,28 @@ class UserFragment : Fragment() {
     ): View? {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        db.get().addOnSuccessListener { document ->
-            if(document != null) {
-                binding.WelcomeTitle.text = "Olá, ${document.getString("Nome")}"
-            }
-        }
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        db.get().addOnSuccessListener { document ->
+            if(document != null) {
+                binding.WelcomeTitle.text = "Olá, ${document.getString("nome")}"
+                binding.alturaValue.text = "${document.getDouble("altura").toString()} cm"
+                binding.pesoValue.text = "${document.getDouble("peso").toString()} kg"
+                binding.imcValue.text =  ("%.2f".format(getIMC(document.getDouble("peso")!!, document.getDouble("altura")!!))).toString()
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getIMC(peso: Double, altura: Double): Double{
+        return peso / ((altura/100) * (altura/100))
     }
 }

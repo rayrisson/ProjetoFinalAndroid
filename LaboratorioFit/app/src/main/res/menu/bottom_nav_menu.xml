@@ -16,4 +16,9 @@
         android:icon="@drawable/dieta_menu"
         android:title="@string/title_dieta" />
 
+    <item
+        android:id="@+id/locaisFragment"
+        android:icon="@drawable/mapa_menu"
+        android:title="@string/academias_e_nutricionistas"/>
+
 </menu>

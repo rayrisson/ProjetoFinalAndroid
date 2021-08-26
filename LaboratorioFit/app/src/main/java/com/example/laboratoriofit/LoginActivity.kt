@@ -16,7 +16,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity() {
-    val UID = "com.example.myfirstapp.MESSAGE"
     private lateinit var auth: FirebaseAuth
 
     private lateinit var binding: ActivityLoginBinding
@@ -34,6 +33,12 @@ class LoginActivity : AppCompatActivity() {
             signIn(email, password)
         }
 
+        binding.cadastrarUser.setOnClickListener {
+            val intent = Intent(this, RegistrarActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         auth = Firebase.auth
     }
 
@@ -47,9 +52,8 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser?.uid
                     val intent = Intent(this, MainActivity::class.java).apply {
-                        putExtra(UID, auth.currentUser)
+                        putExtra("teste", auth.currentUser)
                     }
                     startActivity(intent)
                 } else {

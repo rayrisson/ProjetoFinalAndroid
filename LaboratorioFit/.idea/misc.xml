@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/dieta_menu.xml" value="0.225" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_registrar.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_refeicao.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_add_treino.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_cadastro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dieta.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ficha.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_locais.xml" value="0.109375" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.5" />
         <entry key="app/src/main/res/layout/refeicao_list.xml" value="0.2854100106496273" />

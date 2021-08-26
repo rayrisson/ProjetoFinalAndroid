@@ -15,7 +15,11 @@
         android:id="@+id/navigation_ficha"
         android:name="com.example.laboratoriofit.ui.ficha.FichaFragment"
         android:label="@string/title_ficha"
-        tools:layout="@layout/fragment_ficha" />
+        tools:layout="@layout/fragment_ficha" >
+        <action
+            android:id="@+id/action_navigation_ficha_to_addTreinoFragment"
+            app:destination="@id/addTreinoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dieta"
@@ -38,4 +42,23 @@
             android:name="idDieta"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/addTreinoFragment"
+        android:name="com.example.laboratoriofit.ui.ficha.AddTreinoFragment"
+        android:label="fragment_add_treino"
+        tools:layout="@layout/fragment_add_treino" >
+        <argument
+            android:name="appBarTitle"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="idTreino"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    <fragment
+        android:id="@+id/locaisFragment"
+        android:name="com.example.laboratoriofit.LocaisFragment"
+        android:label="Locais"
+        tools:layout="@layout/fragment_locais" />
 </navigation>

@@ -4,17 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.laboratoriofit.R
+import com.example.laboratoriofit.adapter.TreinoListAdapter
+import com.example.laboratoriofit.data.ficha.TreinoRepository
 import com.example.laboratoriofit.databinding.FragmentFichaBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback as SimpleCallback1
 
 class FichaFragment : Fragment() {
 
-    //private lateinit var dashboardViewModel: DashboardViewModel
+    private val database : CollectionReference = FirebaseFirestore.getInstance().collection("User").document(
+        Firebase.auth.currentUser?.uid.toString()).collection("Ficha")
+    private var treinoRepository: TreinoRepository = TreinoRepository(database)
+    private var viewModel : FichaViewModel = FichaViewModel(treinoRepository)
     private var _binding: FragmentFichaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -30,6 +39,25 @@ class FichaFragment : Fragment() {
         val root: View = binding.root
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        super.onViewCreated(view, savedInstanceState)
+        binding.addExerciseButton.setOnClickListener{
+            val action = FichaFragmentDirections.actionNavigationFichaToAddTreinoFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.listaTreino.layoutManager = LinearLayoutManager(this.context)
+        val adapter = TreinoListAdapter({ ref ->
+            viewModel.concludeSerie(ref)
+        }){ val action = FichaFragmentDirections.actionNavigationFichaToAddTreinoFragment(getString(R.string.editar_treino), it.id)
+            findNavController().navigate(action)
+        }
+        viewModel.allTreinos.observe(this.viewLifecycleOwner){ treinos ->
+            adapter.submitList(treinos)
+        }
+        binding.listaTreino.adapter = adapter
     }
 
     override fun onDestroyView() {

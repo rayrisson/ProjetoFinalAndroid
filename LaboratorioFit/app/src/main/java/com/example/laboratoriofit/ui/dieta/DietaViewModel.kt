@@ -3,29 +3,27 @@ package com.example.laboratoriofit.ui.dieta
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.laboratoriofit.data.dieta.Refeicao
+import com.example.laboratoriofit.data.dieta.Dieta
 import com.example.laboratoriofit.data.dieta.RefeicaoRepository
-import kotlinx.coroutines.launch
 
 class DietaViewModel(private val refeicaoRepository: RefeicaoRepository) : ViewModel() {
 
-    var _allRefeicoes = MutableLiveData<List<Refeicao>>()
-    val allRefeicoes: LiveData<List<Refeicao>>
+    var _allRefeicoes = MutableLiveData<List<Dieta>>()
+    val allRefeicoes: LiveData<List<Dieta>>
     get(){
         refeicaoRepository.getRefeicoes{_allRefeicoes.value = it}
         return _allRefeicoes
     }
 
-    var _Ref = MutableLiveData<Refeicao>()
+    var _Ref = MutableLiveData<Dieta>()
 
-    private fun insertRefeicao(refeicao: Refeicao){
+    private fun insertRefeicao(refeicao: Dieta){
         refeicaoRepository.insert(refeicao)
     }
 
-    private fun getNewRefeicao(refeicaoDesc: String, refeicaoHora: String): Refeicao{
+    private fun getNewRefeicao(refeicaoDesc: String, refeicaoHora: String): Dieta{
         var formattertime = refeicaoHora.replace(":", "")
-        return Refeicao(
+        return Dieta(
             descricao = refeicaoDesc,
             horario = formattertime.toInt()
             )
@@ -40,7 +38,7 @@ class DietaViewModel(private val refeicaoRepository: RefeicaoRepository) : ViewM
         return (refeicaoDesc.isNotBlank() && refeicaoHora.isNotBlank())
     }
 
-    fun retrieveItem(id: String): LiveData<Refeicao>{
+    fun retrieveItem(id: String): LiveData<Dieta>{
         refeicaoRepository.getRefeicao(id) {_Ref.value = it}
         return _Ref
     }

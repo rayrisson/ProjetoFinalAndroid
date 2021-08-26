@@ -2,16 +2,11 @@ package com.example.laboratoriofit
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
-
-class CheckUser: AppCompatActivity()  {
+class CheckUser: AppCompatActivity(){
     var user = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,4 +21,5 @@ class CheckUser: AppCompatActivity()  {
             finish()
         }
     }
+
 }

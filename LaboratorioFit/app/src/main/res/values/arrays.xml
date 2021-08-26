@@ -1,0 +1,51 @@
+<resources>
+    <string-array name="exercicio">
+        <item>Supino Reto</item>
+        <item>Supino Inclinado</item>
+        <item>Supino Declinado</item>
+        <item>Crucifixo</item>
+        <item>Voador</item>
+        <item>Cross-over</item>
+        <item>Desenv. Máquina </item>
+        <item>Desenv. Barra </item>
+        <item>Desenv. Haltéres </item>
+        <item>Elevação Lateral </item>
+        <item>Elevação Frontal </item>
+        <item>Remada Alta </item>
+        <item>Encolhimento</item>
+        <item>Puxador Remada</item>
+        <item>Baixa Remada</item>
+        <item>Cavalinho Remada</item>
+        <item>Unilateral</item>
+        <item>Fly Invertido</item>
+        <item>Crucifixo Invertido</item>
+        <item>Pullover</item>
+        <item>Barra Fixa</item>
+        <item>Remada Curvada</item>
+        <item>Polia Alta</item>
+        <item>Rosca Direta</item>
+        <item>Rosca Alternada</item>
+        <item>Rosca Invertida</item>
+        <item>Rosca Concentrada</item>
+        <item>Rosca Martelo</item>
+        <item>Rosca Scott</item>
+        <item>Rosca Cross-over</item>
+        <item>Agachamento</item>
+        <item>Extensora</item>
+        <item>Flexora</item>
+        <item>Adutora</item>
+        <item>Abdutora</item>
+        <item>Panturrilha</item>
+        <item>Levant. de terra</item>
+        <item>Leg-press</item>
+        <item>Polia Tríceps</item>
+        <item>Corda</item>
+        <item>Tríceps Testa</item>
+        <item>Tríceps Francês</item>
+        <item>Tríceps Supinado</item>
+        <item>Tríceps Paralela</item>
+        <item>Tríceps Rosca</item>
+        <item>Tríceps Banco</item>
+        <item>Kick-back</item>
+    </string-array>
+</resources>

@@ -6,16 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.laboratoriofit.data.dieta.Refeicao
+import com.example.laboratoriofit.R
+import com.example.laboratoriofit.data.dieta.Dieta
 import com.example.laboratoriofit.data.dieta.RefeicaoRepository
-//import com.example.laboratoriofit.data.dieta.RefeicaoRepository
 import com.example.laboratoriofit.databinding.FragmentAddRefeicaoBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -32,7 +27,7 @@ class AddRefeicaoFragment : Fragment() {
     private val database : CollectionReference = FirebaseFirestore.getInstance().collection("User").document(Firebase.auth.currentUser?.uid.toString()).collection("Dieta")
     private var refeicaoRepository: RefeicaoRepository = RefeicaoRepository(database)
     private var viewModelD : DietaViewModel = DietaViewModel(refeicaoRepository)
-    val args: AddRefeicaoFragmentArgs by navArgs()
+    //val args: AddRefeicaoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,18 +42,18 @@ class AddRefeicaoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
+        val args = AddRefeicaoFragmentArgs.fromBundle (bundle!!)
 
         binding.fieldHoraRefeicao.setOnClickListener{
             openTimePicker()
         }
 
-        val args = AddRefeicaoFragmentArgs.fromBundle (bundle!!)
         if(args.idDieta.isNotBlank()){
-            binding.addRefeicaoButton.text = "Atualizar"
+            binding.addRefeicaoButton.text = getString(R.string.atualizar)
             binding.topAppBarAddRef.title = args.title
             viewModelD.retrieveItem(args.idDieta).observe(this.viewLifecycleOwner){selectedItem ->
-                val ref = selectedItem
-                bind(ref)
+                //val ref = selectedItem
+                bind(selectedItem)
             }
         }else{
             binding.deleteRefeicaoButton.visibility = View.GONE
@@ -115,7 +110,7 @@ class AddRefeicaoFragment : Fragment() {
         }
     }
 
-    private fun bind(ref: Refeicao){
+    private fun bind(ref: Dieta){
         val m = ref.horario % 100
         val minuto = m.toString().padStart(2, '0')
         val h = ref.horario / 100
@@ -131,26 +126,15 @@ class AddRefeicaoFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        binding.addRefeicaoButton.setOnClickListener {
-            /*val horaretorno = binding.fieldHoraRefeicao.toString().replace(":", "").toInt()
-            val ref1 = Refeicao(
-                id = ref.id,
-                descricao = binding.fieldDescRefeicao.toString(),
-                horario = horaretorno
-            )*/
-            val docData = hashMapOf(
-                "descricao" to binding.fieldDescRefeicao.text.toString(),
-                "horario" to binding.fieldHoraRefeicao.text.toString().replace(":", "").toInt()
-            )
-            viewModelD.updateRefeicao(ref.id, docData)
-            findNavController().popBackStack()
+        if(isEntryValid()){
+            binding.addRefeicaoButton.setOnClickListener {
+                val docData = hashMapOf(
+                    "descricao" to binding.fieldDescRefeicao.text.toString(),
+                    "horario" to binding.fieldHoraRefeicao.text.toString().replace(":", "").toInt()
+                )
+                viewModelD.updateRefeicao(ref.id, docData)
+                findNavController().popBackStack()
+            }
         }
-
-        //binding.addRefeicaoButton.visibility = View.GONE
-        /*val deleteButton: Button = Button(context)
-        deleteButton.text = "Delete"
-        val params = deleteButton.layoutParams as ConstraintLayout.LayoutParams
-        params.topToBottom = binding.addRefeicaoButton.id
-        deleteButton.layoutParams*/
     }
 }

@@ -25,20 +25,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class DietaFragment : Fragment() {
-    /*private val viewModel: DietaViewModel by activityViewModels{
-        DietaViewModelFactory(
-            (activity?.application as DietaApplication).database.refeicaoRepository()
-        )
-    }*/
-    //private lateinit var notificationsViewModel: NotificationsViewModel
+
     private val database : CollectionReference = FirebaseFirestore.getInstance().collection("User").document(
         Firebase.auth.currentUser?.uid.toString()).collection("Dieta")
     private var refeicaoRepository: RefeicaoRepository = RefeicaoRepository(database)
     private var viewModel : DietaViewModel = DietaViewModel(refeicaoRepository)
-    private var _binding: FragmentDietaBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentDietaBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -61,7 +54,18 @@ class DietaFragment : Fragment() {
         }
 
         val adapter = RefeicaoListAdapter({ ref ->
-            Snackbar.make(binding.root, "Clicou ${ref.descricao}", Snackbar.LENGTH_SHORT)
+            if(ref.checked == false){
+                val docData = hashMapOf(
+                    "checked" to true
+                )
+                viewModel.updateRefeicao(ref.id, docData)
+            }else{
+                val docData = hashMapOf(
+                    "checked" to false
+                )
+                viewModel.updateRefeicao(ref.id, docData)
+            }
+            Snackbar.make(binding.root, "Comeu ${ref.descricao}!\uD83D\uDE0B", Snackbar.LENGTH_SHORT)
                 .show()
         }){ val action = DietaFragmentDirections.actionNavigationDietaToAddRefeicaoFragment(getString(R.string.edit_fragment_title), it.id)
             findNavController().navigate(action)
