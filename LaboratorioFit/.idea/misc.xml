@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/f7a1b9e550ad644e94d71d591535b3f9/transformed/jetified-facebook-share-4.42.0/res/drawable/com_facebook_button_send_background.xml" value="0.1640625" />
         <entry key="app/src/main/res/drawable/dieta_menu.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
@@ -10,13 +11,17 @@
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_refeicao.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_add_treino.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_auxiliar.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_cadastro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dieta.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_edit_user.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_ficha.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_locais.xml" value="0.109375" />
+        <entry key="app/src/main/res/layout/fragment_locais.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_registrar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.14" />
         <entry key="app/src/main/res/layout/refeicao_list.xml" value="0.2854100106496273" />
+        <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.20885416666666667" />
       </map>
     </option>

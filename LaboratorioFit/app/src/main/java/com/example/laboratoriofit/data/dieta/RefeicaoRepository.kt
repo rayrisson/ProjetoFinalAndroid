@@ -11,7 +11,8 @@ class RefeicaoRepository(private val db: CollectionReference) {
                 var ref = Dieta(
                     id = document.getString("id")!!,
                     descricao = document.getString("descricao")!!,
-                    horario = document.getDouble("horario")!!.toInt()
+                    horario = document.getDouble("horario")!!.toInt(),
+                    checked = document.getBoolean("checked")!!
                 )
                 refeicoes.add(ref)
             }
@@ -24,17 +25,17 @@ class RefeicaoRepository(private val db: CollectionReference) {
             val ref = Dieta(
                 id = document.getString("id")!!,
                 descricao = document.getString("descricao")!!,
-                horario = document.getDouble("horario")!!.toInt()
+                horario = document.getDouble("horario")!!.toInt(),
+                checked = document.getBoolean("checked")!!
             )
             callback(ref)
         }
     }
 
     fun insert(refeicao: Dieta){
-        db.add(refeicao).addOnSuccessListener { document ->
-            val id: String = document.id
-            db.document(id).update("id", id)
-        }
+        val newRefeicao = db.document().id
+        val copia = refeicao.copy(id = newRefeicao)
+        db.document(newRefeicao).set(copia)
     }
 
     fun delete(id: String){

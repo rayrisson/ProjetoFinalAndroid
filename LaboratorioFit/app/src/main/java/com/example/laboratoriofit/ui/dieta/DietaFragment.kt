@@ -11,8 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.laboratoriofit.MainActivity
 import com.example.laboratoriofit.R
 import com.example.laboratoriofit.adapter.RefeicaoListAdapter
 import com.example.laboratoriofit.data.dieta.RefeicaoRepository
@@ -47,6 +51,7 @@ class DietaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
+
         binding.mealsList.layoutManager = LinearLayoutManager(this.context)
         binding.addMealButton.setOnClickListener{
             val action = DietaFragmentDirections.actionNavigationDietaToAddRefeicaoFragment("", "")
@@ -54,19 +59,12 @@ class DietaFragment : Fragment() {
         }
 
         val adapter = RefeicaoListAdapter({ ref ->
-            if(ref.checked == false){
                 val docData = hashMapOf(
-                    "checked" to true
+                    "checked" to !(ref.checked)
                 )
-                viewModel.updateRefeicao(ref.id, docData)
-            }else{
-                val docData = hashMapOf(
-                    "checked" to false
-                )
-                viewModel.updateRefeicao(ref.id, docData)
-            }
-            Snackbar.make(binding.root, "Comeu ${ref.descricao}!\uD83D\uDE0B", Snackbar.LENGTH_SHORT)
-                .show()
+            viewModel.updateRefeicao(ref.id, docData)
+            val action = DietaFragmentDirections.actionNavigationDietaToAuxiliarFragment()
+            findNavController().navigate(action)
         }){ val action = DietaFragmentDirections.actionNavigationDietaToAddRefeicaoFragment(getString(R.string.edit_fragment_title), it.id)
             findNavController().navigate(action)
         }

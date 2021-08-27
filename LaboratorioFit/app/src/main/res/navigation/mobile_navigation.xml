@@ -9,7 +9,11 @@
         android:id="@+id/navigation_user"
         android:name="com.example.laboratoriofit.ui.user.UserFragment"
         android:label="@string/title_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_navigation_user_to_editUserFragment"
+            app:destination="@id/editUserFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_ficha"
@@ -19,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_ficha_to_addTreinoFragment"
             app:destination="@id/addTreinoFragment" />
+        <action
+            android:id="@+id/action_navigation_ficha_to_auxiliarFragment"
+            app:destination="@id/auxiliarFragment" />
     </fragment>
 
     <fragment
@@ -29,6 +36,9 @@
         <action
             android:id="@+id/action_navigation_dieta_to_addRefeicaoFragment"
             app:destination="@id/addRefeicaoFragment" />
+        <action
+            android:id="@+id/action_navigation_dieta_to_auxiliarFragment"
+            app:destination="@id/auxiliarFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRefeicaoFragment"
@@ -61,4 +71,14 @@
         android:name="com.example.laboratoriofit.LocaisFragment"
         android:label="Locais"
         tools:layout="@layout/fragment_locais" />
+    <fragment
+        android:id="@+id/editUserFragment"
+        android:name="com.example.laboratoriofit.ui.user.EditUserFragment"
+        android:label="fragment_edit_user"
+        tools:layout="@layout/fragment_edit_user" />
+    <fragment
+        android:id="@+id/auxiliarFragment"
+        android:name="com.example.laboratoriofit.AuxiliarFragment"
+        android:label="fragment_auxiliar"
+        tools:layout="@layout/fragment_auxiliar" />
 </navigation>

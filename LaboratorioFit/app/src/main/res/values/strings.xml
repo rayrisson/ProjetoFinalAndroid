@@ -25,4 +25,24 @@
     <string name="adicionar_treino">Adicionar treino</string>
     <string name="editar_treino">Editar treino</string>
     <string name="academias_e_nutricionistas">Academias e nutricionistas</string>
+    <string name="meu_perfil">Meu Perfil</string>
+    <string name="genero">Gênero</string>
+    <string name="alterar">Alterar</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="facebook_app_id">2841539852778703</string> <string name="fb_login_protocol_scheme">fb2841539852778703</string>
+    <string name="ola_usuario">Olá, usuário</string>
+    <string name="altura">Altura:</string>
+    <string name="_0_cm">0 cm</string>
+    <string name="peso">Peso:</string>
+    <string name="_0_kg">0 kg</string>
+    <string name="_0">0</string>
+    <string name="senha">Senha</string>
+    <string name="altura_em_centimetros">Altura (em centímetros)</string>
+    <string name="peso_only">Peso</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="clique_aqui_para_cadastrar_se">Clique aqui para cadastrar-se</string>
+    <string name="adicionar_exercicio">Adicionar exercício</string>
+    <string name="nome">Nome</string>
+    <string name="deslogar">Deslogar</string>
 </resources>

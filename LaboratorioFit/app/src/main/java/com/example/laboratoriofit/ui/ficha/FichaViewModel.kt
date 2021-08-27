@@ -35,7 +35,7 @@ class FichaViewModel(private val treinoRepository: TreinoRepository) : ViewModel
     }
 
     fun isEntryValid(treinoNome: String, treinoSerie: String, treinoRepeticao: String, treinoSerieAtual: String = "1"): Boolean{
-        return (treinoNome.isNotBlank() && treinoSerie.isNotBlank() && treinoSerie.toInt() > 0 && treinoRepeticao.isNotBlank() && treinoRepeticao.toInt() > 0 && treinoSerieAtual.isNotBlank() && treinoSerieAtual.toInt() > 0 && treinoSerieAtual.toInt() <= treinoSerie.toInt())
+        return (treinoNome.isNotBlank() && treinoSerie.isNotBlank() && treinoSerie.toInt() > 0 && treinoRepeticao.isNotBlank() && treinoRepeticao.toInt() > 0 && treinoSerieAtual.isNotBlank() && treinoSerieAtual.toInt() >= 0 && treinoSerieAtual.toInt() <= treinoSerie.toInt())
     }
 
     fun retrieveItem(id: String): LiveData<Treino>{

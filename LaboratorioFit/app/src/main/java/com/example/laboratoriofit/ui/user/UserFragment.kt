@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.laboratoriofit.R
 import com.example.laboratoriofit.databinding.FragmentUserBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -33,12 +35,24 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         db.get().addOnSuccessListener { document ->
             if(document != null) {
-                binding.WelcomeTitle.text = "Olá, ${document.getString("nome")}"
+                binding.WelcomeTitle.text = "Olá, ${document.getString("nome")!!.split(" ")[0]}"
                 binding.alturaValue.text = "${document.getDouble("altura").toString()} cm"
                 binding.pesoValue.text = "${document.getDouble("peso").toString()} kg"
                 binding.imcValue.text =  ("%.2f".format(getIMC(document.getDouble("peso")!!, document.getDouble("altura")!!))).toString()
+            }
+        }
+
+        binding.topAppBar.setOnMenuItemClickListener{
+            when(it.itemId){
+                R.id.setting_user -> {
+                    val action = UserFragmentDirections.actionNavigationUserToEditUserFragment()
+                    findNavController().navigate(action)
+                    true
+                }
+                else -> false
             }
         }
     }

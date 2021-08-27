@@ -4,7 +4,7 @@ import com.google.firebase.firestore.CollectionReference
 
 class TreinoRepository(private val db: CollectionReference) {
     fun getTreinos(callback: (List<Treino>) -> Unit){
-        db.get().addOnSuccessListener { documents ->
+        db.orderBy("serieAtual", com.google.firebase.firestore.Query.Direction.DESCENDING).get().addOnSuccessListener { documents ->
             val treinos = mutableListOf<Treino>()
             for(document in documents){
                 val treino = Treino(
@@ -34,10 +34,9 @@ class TreinoRepository(private val db: CollectionReference) {
     }
 
     fun insert(treino: Treino){
-        db.add(treino).addOnSuccessListener { document ->
-            val id: String = document.id
-            db.document(id).update("id", id)
-        }
+        val newTreino = db.document().id
+        val copia = treino.copy(id = newTreino)
+        db.document(newTreino).set(copia)
     }
 
     fun delete(id: String){

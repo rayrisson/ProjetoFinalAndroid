@@ -1,5 +1,6 @@
 package com.example.laboratoriofit.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -7,24 +8,35 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.laboratoriofit.R
 import com.example.laboratoriofit.data.ficha.Treino
 import com.example.laboratoriofit.databinding.RefeicaoListBinding
+import com.google.android.material.color.MaterialColors
 
 class TreinoListAdapter(private val onTreinoClick: (Treino) -> Unit, private val onTreinoLongClick: (Treino) -> Unit) :
-    ListAdapter<Treino, TreinoListAdapter.TreinoViewHolder>(TreinoListAdapter.DiffCallback)  {
+    ListAdapter<Treino, TreinoListAdapter.TreinoViewHolder>(DiffCallback)  {
     class TreinoViewHolder(private var binding: RefeicaoListBinding)
         : RecyclerView.ViewHolder(binding.root){
         fun bind(treino: Treino){
             binding.apply{
-                binding.titleHorario.text = treino.nome.trim()
+                titleHorario.text = treino.nome.trim()
 
                 val textDesc = TextView(root.context)
                 textDesc.text = "${treino.serieAtual}/${treino.serie} séries"
-                binding.listRef.addView(textDesc)
+                listRef.addView(textDesc)
 
                 val textDesc2 = TextView(root.context)
                 textDesc2.text = "${treino.repeticao} repetições"
-                binding.listRef.addView(textDesc2)
+                listRef.addView(textDesc2)
+
+                if(treino.serieAtual == treino.serie){
+                    val teste =  MaterialColors.getColor(binding.root, R.attr.colorPrimaryVariant,binding.root.getResources().getColor(
+                        R.color.primaryDarkColor))
+                    card.setCardBackgroundColor(teste)
+                    titleHorario.setTextColor(Color.WHITE)
+                    textDesc.setTextColor(Color.WHITE)
+                    textDesc2.setTextColor(Color.WHITE)
+                }
             }
         }
     }
@@ -32,7 +44,7 @@ class TreinoListAdapter(private val onTreinoClick: (Treino) -> Unit, private val
     companion object{
         private val DiffCallback = object: DiffUtil.ItemCallback<Treino>(){
             override fun areItemsTheSame(oldItem: Treino, newItem: Treino): Boolean {
-                return oldItem == newItem
+                return oldItem === newItem
             }
 
             override fun areContentsTheSame(oldItem: Treino, newItem: Treino): Boolean {

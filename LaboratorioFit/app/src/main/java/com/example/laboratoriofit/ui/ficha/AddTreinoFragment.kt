@@ -59,7 +59,6 @@ class AddTreinoFragment : Fragment() {
             binding.treinoSerieAtualInput.visibility = View.GONE
             binding.deleteTreinoButton.visibility = View.GONE
             binding.addTreinoButton.setOnClickListener{
-                hideKeyboard()
                 addNewTreino()
             }
         }
@@ -118,6 +117,7 @@ class AddTreinoFragment : Fragment() {
             )
             findNavController().popBackStack()
         }else{
+            hideKeyboard()
             Snackbar.make(binding.root, "Preencha todos os campos com valores válidos!", Snackbar.LENGTH_SHORT)
                 .show()
         }

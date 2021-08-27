@@ -1,13 +1,15 @@
 package com.example.laboratoriofit.ui.dieta
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.laboratoriofit.R
 import com.example.laboratoriofit.data.dieta.Dieta
 import com.example.laboratoriofit.data.dieta.RefeicaoRepository
@@ -27,7 +29,6 @@ class AddRefeicaoFragment : Fragment() {
     private val database : CollectionReference = FirebaseFirestore.getInstance().collection("User").document(Firebase.auth.currentUser?.uid.toString()).collection("Dieta")
     private var refeicaoRepository: RefeicaoRepository = RefeicaoRepository(database)
     private var viewModelD : DietaViewModel = DietaViewModel(refeicaoRepository)
-    //val args: AddRefeicaoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,6 +106,7 @@ class AddRefeicaoFragment : Fragment() {
             )
             findNavController().popBackStack()
         }else{
+            hideKeyboard()
             Snackbar.make(binding.root, "Preencha todos os campos!", Snackbar.LENGTH_SHORT)
                 .show()
         }
@@ -120,21 +122,38 @@ class AddRefeicaoFragment : Fragment() {
             fieldHoraRefeicao.setText("${hora}:${minuto}")
         }
 
-
         binding.deleteRefeicaoButton.setOnClickListener {
             viewModelD.deleteRefeicao(ref.id)
             findNavController().popBackStack()
         }
 
-        if(isEntryValid()){
-            binding.addRefeicaoButton.setOnClickListener {
+
+        binding.addRefeicaoButton.setOnClickListener {
+            if(isEntryValid()){
                 val docData = hashMapOf(
                     "descricao" to binding.fieldDescRefeicao.text.toString(),
                     "horario" to binding.fieldHoraRefeicao.text.toString().replace(":", "").toInt()
                 )
                 viewModelD.updateRefeicao(ref.id, docData)
                 findNavController().popBackStack()
+            }else{
+                hideKeyboard()
+                Snackbar.make(binding.root, "Preencha todos os campos!", Snackbar.LENGTH_SHORT)
+                    .show()
             }
         }
+    }
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

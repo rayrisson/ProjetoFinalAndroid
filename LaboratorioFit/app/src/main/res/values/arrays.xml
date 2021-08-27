@@ -48,4 +48,10 @@
         <item>Tríceps Banco</item>
         <item>Kick-back</item>
     </string-array>
+    <string-array name="genero">
+        <item>Feminino</item>
+        <item>Masculino</item>
+        <item>Não binário</item>
+        <item>Outro(s)</item>
+    </string-array>
 </resources>

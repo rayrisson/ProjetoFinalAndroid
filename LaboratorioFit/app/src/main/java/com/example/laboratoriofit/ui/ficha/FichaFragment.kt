@@ -17,6 +17,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback as SimpleCallback1
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+
 
 class FichaFragment : Fragment() {
 
@@ -51,17 +55,35 @@ class FichaFragment : Fragment() {
         binding.listaTreino.layoutManager = LinearLayoutManager(this.context)
         val adapter = TreinoListAdapter({ ref ->
             viewModel.concludeSerie(ref)
+            val action = FichaFragmentDirections.actionNavigationFichaToAuxiliarFragment()
+            findNavController().navigate(action)
         }){ val action = FichaFragmentDirections.actionNavigationFichaToAddTreinoFragment(getString(R.string.editar_treino), it.id)
             findNavController().navigate(action)
         }
+
+        binding.listaTreino.adapter = adapter
+
         viewModel.allTreinos.observe(this.viewLifecycleOwner){ treinos ->
             adapter.submitList(treinos)
         }
-        binding.listaTreino.adapter = adapter
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if(isVisibleToUser){
+            if (getFragmentManager() != null) {
+                getFragmentManager()
+                    ?.beginTransaction()
+                    ?.detach(this)
+                    ?.attach(this)
+                    ?.commit();
+            }
+        }
+    }
+
 }
