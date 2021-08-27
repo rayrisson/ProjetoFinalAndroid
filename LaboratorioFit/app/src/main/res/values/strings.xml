@@ -45,4 +45,8 @@
     <string name="adicionar_exercicio">Adicionar exercício</string>
     <string name="nome">Nome</string>
     <string name="deslogar">Deslogar</string>
+    <string name="deseja_encontrar_um_nutrionista">Deseja encontrar um nutrionista?</string>
+    <string name="deseja_encontrar_um_personal_trainer">Deseja encontrar um personal trainer?</string>
+    <string name="clique_aqui">Clique aqui!</string>
+    <string name="imc">IMC:</string>
 </resources>

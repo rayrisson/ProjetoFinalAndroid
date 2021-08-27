@@ -1,5 +1,7 @@
 package com.example.laboratoriofit.ui.user
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +16,10 @@ import com.google.firebase.ktx.Firebase
 
 class UserFragment : Fragment() {
 
-    //private lateinit var homeViewModel: HomeViewModel
+
     private val db = FirebaseFirestore.getInstance().collection("User").document(Firebase.auth.currentUser?.uid.toString())
     private var _binding: FragmentUserBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -55,6 +55,24 @@ class UserFragment : Fragment() {
                 else -> false
             }
         }
+        val openURL = Intent(Intent.ACTION_VIEW)
+        openURL.data = Uri.parse("https://www.doctoralia.com.br/nutricionista/online")
+        val openURL2 = Intent(Intent.ACTION_VIEW)
+        openURL2.data = Uri.parse("https://www.treinar.me/")
+
+        if(getActivity()?.getResources()?.getConfiguration()?.orientation == 2){
+            binding.imageCard1.visibility = View.GONE
+            binding.cardPersonal.visibility = View.GONE
+        }
+
+        binding.cardNutri.setOnClickListener {
+            startActivity(openURL)
+        }
+
+        binding.cardPersonal.setOnClickListener {
+            startActivity(openURL2)
+        }
+
     }
 
     override fun onDestroyView() {

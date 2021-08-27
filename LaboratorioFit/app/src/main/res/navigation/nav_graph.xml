@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.laboratoriofit.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_registrarFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/registrarFragment"
         android:name="com.example.laboratoriofit.RegistrarFragment"
-        android:label="fragment_registrar"
+        android:label="Registrar-se"
         tools:layout="@layout/fragment_registrar" />
 </navigation>
